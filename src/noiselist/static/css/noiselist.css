@@ -1,0 +1,12 @@
+/* styles for noiselist */
+
+footer{
+  background-image: url(https://www.noisebridge.net/NB-logo-red-black-med.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  min-height: 130px;
+}
+
+div.content{
+    margin-top: 70px;
+}

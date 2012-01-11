@@ -4,27 +4,22 @@ Introduction
 This is the second installment of our tour of web frameworks. This will 
 be a simple TODO list.
 
-<<<<<<< HEAD
 
 Up and Running
 --------------
-Just like in the last class, you want to run bootstrap and buildout::
+Just like in the last class, you want to run bootstrap and buildout. Unlike the last
+class, the cloned noiselist is the full solution so you can view the commit log to see 
+how the app was built step by step. To get the first step::
 
- # TODO: use noisebridge url
  > git clone git://github.com/eleddy/flask-noiselist.git
-=======
-Just like in the last class, you want to run bootstrap and buildout::
- > git clone <location to repo here>
->>>>>>> 469946adad19506bca2be4345498bafb71111de0
+ # this starts us at step one
+ > git checkout -b ba4ebf111ffb86f9bdc4ee2e9c990b0c146e6f52
  > cd flask-noiselist
  > python bootstrap.py
  > ./bin/buildout
 
 To get the server running in foreground mode, do::
-<<<<<<< HEAD
 
-=======
->>>>>>> 469946adad19506bca2be4345498bafb71111de0
  > bin/flask-ctl debug fg
 
 Your app will be running at http://127.0.0.1:5000 with a simple hello world 
@@ -32,7 +27,6 @@ placeholder.
 
 Take a minute to notice the differences between this app and web2py. There is 
 no admin console and no formatting by default. Flask is really a micro framwork. 
-<<<<<<< HEAD
 
 Notice as well that starting we are in foreground more, and that you don't 
 have to kill a process or terminal to restart. Simply Ctl-C to restart.
@@ -78,12 +72,29 @@ First we need to create a directory for holding our templates::
  > mkdir templates
 
 And lets take our Hello page and make it into a template by adding a template::
- 
+
  > touch hello.html
 
 In that file, let's add a few lines to show how our list will look in the end::
-
- XXX: Link to that changeset
+ 
+ <!DOCTYPE html>
+  <html>
+    <head>
+      <title>TODO at Noisebridge</title>
+    </head>
+    <body>
+      <h1>My Personal TODO List</h1>
+      <ul>
+        <li>Finish evaluating pull requests</li>
+        <li>Finish writing up class work</li>
+        <li>Swim and enjoy the sun</li>
+      <ul>
+      <form action="" method="POST" id="add_to_todo_list">
+        <input type="text" name="todo_item"/>
+        <input type="submit" name="add_todo_submit" value="Add to List!"/>
+      </form>
+    </body>
+  </html>
 
 And then in __init__.py, we will connect the index page with that tempalte by
 adding a decorator::
@@ -96,28 +107,69 @@ adding a decorator::
   def index():
     return render_template('hello.html')
 
+Reload the page to see the changes.
+
+Styling
+-------
+Because there are no styles by default, I will show you where and how we can add javascript, 
+css, and othe image files.
+
+Let's start by hooking up some styles. Since it's all the craze with kids these days, we will 
+use twitters Bootstrap library.
+
+First let's add the default styles to the top of hello.html. The firs link is hostted by twitter 
+and the second link will be hosted by us::
+
+  <head>
+    <title>TODO at Noisebridge</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/noiselist.css"/>
+  </head>
+
+Note that in this case, flask will be serving the css for us. In most cases of production 
+deployment you will want to have your webserver do this. We will talk more about this in 
+later classes.
+
+Let's add a some directories for service static content (*must* be called static)::
+
+  > mkdir static
+  > mkdir static/css
+  > mkdir static/javascript
+  > mkdir static/images
+  > touch static/css/noiselist.css 
+
+Now let's add some styles to static/css/noiselist.css::
+
+  footer{
+    background-image: url(https://www.noisebridge.net/NB-logo-red-black-med.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    min-height: 130px;
+  }
+
+  div.content{
+    margin-top: 70px;
+  }
+  
+
+This is just a basic logo that let's us know that we are serving up the correct content.
+
+Let's update our front page to use bootstraps styles. For brevity I will just point to 
+the raw source since its a lot. Update hello.html with the code at::
+
+  XXX: Put link here
 
 Deployment
 ----------
 Flask is run under WSGI. We will discuss what that means in other classes, but 
 more importantly you just need to know that routing occurs outside of the app itself***
-=======
-Notice as well that starting we are in foreground more, and that you don't 
-have to kill a process or terminal to restart. Simply Ctl-C.
-
-
-
->>>>>>> 469946adad19506bca2be4345498bafb71111de0
 
 
 
 
 More Info
 ---------
-<<<<<<< HEAD
  * Flask Documentation: http://flask.pocoo.org/docs/
  * About Jinja2: http://jinja.pocoo.org/docs/
+ * Bootstrap: http://twitter.github.com/bootstrap/
  * For more info on this buildout itself, please see http://flask.pocoo.org/snippets/27/
-=======
-For more info on this buildout itself, please see http://flask.pocoo.org/snippets/27/
->>>>>>> 469946adad19506bca2be4345498bafb71111de0

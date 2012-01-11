@@ -2,17 +2,61 @@
 <html>
   <head>
     <title>TODO at Noisebridge</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/noiselist.css"/>
   </head>
   <body>
-    <h1>My Personal TODO List</h1>
-    <ul>
-      <li>Finish evaluating pull requests</li>
-      <li>Finish writing up class work</li>
-      <li>Swim and enjoy the sun</li>
-    <ul>
-    <form action="" method="POST" id="add_to_todo_list">
-       <input type="text" name="todo_item"/>
-       <input type="submit" name="add_todo_submit" value="Add to List!"/>
-    </form>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Noiselist</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <form action="" class="pull-right">
+            <input class="input-small" type="text" placeholder="Username">
+            <input class="input-small" type="password" placeholder="Password">
+            <button class="btn" type="submit">Sign in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="page-header">
+          <h1>Noiselist <small>Python web frameworks one list at a time</small></h1>
+        </div>
+        <div class="row">
+          <div class="span10">
+            <h2>Current TODOs</h2>
+            <ul>
+              <li>Finish evaluating pull requests</li>
+              <li>Finish writing up class work</li>
+              <li>Swim and enjoy the sun</li>
+            <ul>
+            <form action="" method="POST" id="add_to_todo_list">
+              <input type="text" name="todo_item"/>
+              <input type="submit" class="btn" name="add_todo_submit" value="Add to List!"/>
+            </form>
+          </div>
+          <div class="span4">
+            <h3>Secondary Content</h3>
+            <ul>
+	      <li>Item 1</li>
+	      <li>Item 2</li>
+	      <li>Item 3</li>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Noisebridge 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
   </body>
+
 </html>
