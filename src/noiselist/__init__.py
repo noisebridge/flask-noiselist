@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request
+<<<<<<< HEAD
 from flask import render_template
+=======
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0
 
 
 class _DefaultSettings(object):
@@ -22,5 +25,11 @@ def init_db():
 
 @app.route('/')
 def index():
+<<<<<<< HEAD
     return render_template('hello.html')
     
+=======
+    if request.args:
+        BREAK (with_NameError)
+    return 'Hello %s!' % app.config['USERNAME'].title()
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0

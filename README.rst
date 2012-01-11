@@ -4,6 +4,7 @@ Introduction
 This is the second installment of our tour of web frameworks. This will 
 be a simple TODO list.
 
+<<<<<<< HEAD
 
 Up and Running
 --------------
@@ -11,12 +12,19 @@ Just like in the last class, you want to run bootstrap and buildout::
 
  # TODO: use noisebridge url
  > git clone git://github.com/eleddy/flask-noiselist.git
+=======
+Just like in the last class, you want to run bootstrap and buildout::
+ > git clone <location to repo here>
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0
  > cd flask-noiselist
  > python bootstrap.py
  > ./bin/buildout
 
 To get the server running in foreground mode, do::
+<<<<<<< HEAD
 
+=======
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0
  > bin/flask-ctl debug fg
 
 Your app will be running at http://127.0.0.1:5000 with a simple hello world 
@@ -24,6 +32,7 @@ placeholder.
 
 Take a minute to notice the differences between this app and web2py. There is 
 no admin console and no formatting by default. Flask is really a micro framwork. 
+<<<<<<< HEAD
 
 Notice as well that starting we are in foreground more, and that you don't 
 have to kill a process or terminal to restart. Simply Ctl-C to restart.
@@ -92,12 +101,23 @@ Deployment
 ----------
 Flask is run under WSGI. We will discuss what that means in other classes, but 
 more importantly you just need to know that routing occurs outside of the app itself***
+=======
+Notice as well that starting we are in foreground more, and that you don't 
+have to kill a process or terminal to restart. Simply Ctl-C.
+
+
+
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0
 
 
 
 
 More Info
 ---------
+<<<<<<< HEAD
  * Flask Documentation: http://flask.pocoo.org/docs/
  * About Jinja2: http://jinja.pocoo.org/docs/
  * For more info on this buildout itself, please see http://flask.pocoo.org/snippets/27/
+=======
+For more info on this buildout itself, please see http://flask.pocoo.org/snippets/27/
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0

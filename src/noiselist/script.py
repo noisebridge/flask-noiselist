@@ -51,7 +51,11 @@ def make_shell():
 
 def _init_db(debug=False, dry_run=False):
     """Initialize the database."""
+<<<<<<< HEAD
     from noiselist import init_db
+=======
+    from hello import init_db
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0
     print 'init_db()'
     if dry_run:
         return
@@ -126,4 +130,8 @@ def run():
     def action_stop(dry_run=False):
         """Stop the application."""
         _serve('stop', dry_run=dry_run)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 469946adad19506bca2be4345498bafb71111de0
     werkzeug.script.run()
