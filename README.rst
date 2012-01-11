@@ -157,14 +157,37 @@ This is just a basic logo that let's us know that we are serving up the correct 
 Let's update our front page to use bootstraps styles. For brevity I will just point to 
 the raw source since its a lot. Update hello.html with the code at::
 
-  XXX: Put link here
+  https://raw.github.com/eleddy/flask-noiselist/d1137326c11cb908ddc6d59598913e439d5b1f83/src/noiselist/templates/hello.html
 
-Deployment
-----------
-Flask is run under WSGI. We will discuss what that means in other classes, but 
-more importantly you just need to know that routing occurs outside of the app itself***
+Reload and party.
+
+Hooking up to Data
+------------------
+Flask passes arguments to the templating language just like web2 py does. To quickly 
+pass in a list of items to display on the front page, update __init__.py to say::
+
+  def index():
+    todo_list = ["Watch TV",
+             "Contemplate Work",
+             "Go to Bed",
+            ]
+    return render_template('hello.html', todos=todo_list)
+
+Then in hello.html we update the list to pull from the todos passed in::
+
+    <h2>Current TODOs</h2>
+    <ul>
+      {% for todo in todos %}
+         <li>{{ todo }}</li>
+      {% endfor %}
+    <ul>
+
+Note the difference in syntax here with web2py. To end a loop we use "endfor" instead
+of "pass". The = is not required to display a variable either.
 
 
+The Database
+------------
 
 
 More Info

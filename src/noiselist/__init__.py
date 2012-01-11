@@ -2,6 +2,7 @@
 from flask import Flask, request
 from flask import render_template
 
+
 class _DefaultSettings(object):
     USERNAME = 'world'
     SECRET_KEY = 'development key'
@@ -21,5 +22,9 @@ def init_db():
 
 @app.route('/')
 def index():
-    return render_template('hello.html')
+    todo_list = ["Watch TV",
+             "Contemplate Work",
+             "Go to Bed",
+            ]
+    return render_template('hello.html', todos=todo_list)
     

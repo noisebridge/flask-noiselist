@@ -33,9 +33,9 @@
           <div class="span10">
             <h2>Current TODOs</h2>
             <ul>
-              <li>Finish evaluating pull requests</li>
-              <li>Finish writing up class work</li>
-              <li>Swim and enjoy the sun</li>
+              {% for todo in todos %}
+                  <li>{{ todo }}</li>
+              {% endfor %}
             <ul>
             <form action="" method="POST" id="add_to_todo_list">
               <input type="text" name="todo_item"/>
