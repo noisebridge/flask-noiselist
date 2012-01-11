@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request
+from flask import render_template
 
 
 class _DefaultSettings(object):
@@ -21,6 +22,5 @@ def init_db():
 
 @app.route('/')
 def index():
-    if request.args:
-        BREAK (with_NameError)
-    return 'Hello %s!' % app.config['USERNAME'].title()
+    return render_template('hello.html')
+    
