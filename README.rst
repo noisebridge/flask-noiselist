@@ -28,8 +28,9 @@ placeholder.
 Take a minute to notice the differences between this app and web2py. There is 
 no admin console and no formatting by default. Flask is really a micro framwork. 
 
-Notice as well that starting we are in foreground more, and that you don't 
-have to kill a process or terminal to restart. Simply Ctl-C to restart.
+Notice as well that starting we are in foreground mode, and that you don't 
+have to kill a process or terminal to restart. Simply Ctl-C to restart. This 
+also means that any pdbing will take you directly to this console.
 
 Modifying These Instructions
 ----------------------------
