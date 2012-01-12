@@ -345,8 +345,10 @@ Note that the redirect here is saying to redirect the the url that the index fun
 
 Homework
 --------
-Follow the rest of the tutorial at http://flask.pocoo.org/docs/quickstart to support multiple
+ * Follow the rest of the tutorial at http://flask.pocoo.org/docs/quickstart to support multiple
 users.
+ * Check the input of the form and if it is empty, flash an error message. For considerable tips, 
+   see http://flask.pocoo.org/docs/patterns/flashing/#message-flashing-pattern
      
 More Info
 ---------
