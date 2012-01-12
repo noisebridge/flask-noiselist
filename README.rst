@@ -214,8 +214,25 @@ called model.py and keep all of our access info there::
 In this model, we will create the same todo item that we did in the web2py app with 
 a bit of a different twist. Edit model.py to say::
 
-  > XXX put stuff here
+  from flask import Flask
+  from flaskext.sqlalchemy import SQLAlchemy
 
+
+  app = Flask(__name__)
+  app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+  db = SQLAlchemy(app)
+
+
+  class TodoItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(240), unique=True)
+
+    def __init__(self, description):
+        self.description = description
+        
+
+    def __repr__(self):
+        return '<TODO %r>' % self.description
 
 Next we need to initialize the database. Initializeing the database will sync the model 
 we created with the database, making sure that all the columns and tables we need are 
@@ -253,8 +270,8 @@ __init__.py::
 Keep in mind that at this moment the db is empty so a reload should just show an 
 empty list.
 
-Adding Data to the Database
----------------------------
+Submitting Data
+---------------
 Because this is our second time adding data to a database, let's also introduce the
 concept of routing. Let's have our from page form submit to a url that is not the 
 index page, process the data, and then redirect. First things first, let's add a
@@ -282,6 +299,36 @@ that will help you keep your site from getting haxored. To allow posting to our 
 in __init__.py modify the add function::
 
   @app.route('/add', methods=['POST',])
+
+Reload the front page and now you can see we are able to add an item and get redirected
+to the new form!
+
+Saving Data
+-----------
+Last but not the very least, we need to save the data. In __init__.py, get the data from 
+the REQUEST variable (we will discuss this in class) and then save to the database. The 
+commit is REQUIRED!::
+
+  @app.route('/add', methods=['POST',])
+  def add_todo():
+    if 'todo_item' in request.form:
+        todo = TodoItem(description=request.form['todo_item'])
+        db.session.add(todob)
+        db.session.commit()
+        return "Got it!"
+    return "Unknown Error"  
+
+Note that unlike web2py, there is no validation out of the box. This could be a good thing 
+or a bad things depending on your style and your project. 
+
+At this point you can go to the front page, add an item, then go back to to the front page 
+to see the repr version of this object. To show only the todo item, update hello.html::
+  
+  <ul>
+    {% for todo in todos %}
+       <li>{{ todo.description }}</li>
+    {% endfor %}
+  <ul>
 
      
 More Info

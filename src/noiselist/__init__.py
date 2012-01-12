@@ -29,5 +29,10 @@ def index():
 
 @app.route('/add', methods=['POST',])
 def add_todo():
-    return "Made it!"
+    if 'todo_item' in request.form:
+        todo = TodoItem(description=request.form['todo_item'])
+        db.session.add(todob)
+        db.session.commit()
+        return "Got it!"
+    return "Unknown Error"
 

@@ -12,8 +12,8 @@ class TodoItem(db.Model):
     description = db.Column(db.String(240), unique=True)
 
     def __init__(self, description):
-        self.description = todo_item
+        self.description = description
         
 
     def __repr__(self):
-        return '<User %r>' % self.description
+        return '<TODO %r>' % self.description

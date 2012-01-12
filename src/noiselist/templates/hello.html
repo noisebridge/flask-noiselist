@@ -34,7 +34,7 @@
             <h2>Current TODOs</h2>
             <ul>
               {% for todo in todos %}
-                  <li>{{ todo }}</li>
+                  <li>{{ todo.description }}</li>
               {% endfor %}
             <ul>
             <form action="/add" method="POST" id="add_to_todo_list">
