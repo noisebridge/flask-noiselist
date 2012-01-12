@@ -26,3 +26,8 @@ def index():
     todo_list = TodoItem.query.all()
     return render_template('hello.html', todos=todo_list)
     
+
+@app.route('/add', methods=['POST',])
+def add_todo():
+    return "Made it!"
+

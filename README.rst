@@ -255,6 +255,33 @@ empty list.
 
 Adding Data to the Database
 ---------------------------
+Because this is our second time adding data to a database, let's also introduce the
+concept of routing. Let's have our from page form submit to a url that is not the 
+index page, process the data, and then redirect. First things first, let's add a
+new route that the form can submit to. This is just a matter of creating a function 
+and testing that it goes to the right place. In __init__.py::
+
+  @app.route('/add')
+  def add_todo():
+    return "Made it!"
+
+Now when we go to http://127.0.0.1:5000/add we see a nice message. Easy peasy. We
+won't set up a template for this page because we are planning to redirect back to 
+index anyways.
+
+Next we can update the form to submit to this new page "/add" in hello.html::
+
+    <form action="/add" method="POST" id="add_to_todo_list">
+       <input type="text" name="todo_item"/>
+       <input type="submit" class="btn" name="add_todo_submit" value="Add to List!"/>
+    </form>
+
+
+You will notice that a blank submit causes a post error. This is a security measure 
+that will help you keep your site from getting haxored. To allow posting to our new url
+in __init__.py modify the add function::
+
+  @app.route('/add', methods=['POST',])
 
      
 More Info
@@ -262,5 +289,6 @@ More Info
  * Flask Documentation: http://flask.pocoo.org/docs/
  * About Jinja2: http://jinja.pocoo.org/docs/
  * Bootstrap: http://twitter.github.com/bootstrap/
- * SQLAlchemy: XXX
+ * SQLAlchemy: http://www.sqlalchemy.org/
+ * SQLAlchemy in Flask: http://packages.python.org/Flask-SQLAlchemy
  * For more info on this buildout itself, please see http://flask.pocoo.org/snippets/27/
