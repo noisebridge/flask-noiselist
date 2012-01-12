@@ -3,7 +3,7 @@ from flask import Flask, request
 from flask import render_template
 from model import TodoItem
 from model import db
-
+from flask import redirect, url_for
 
 class _DefaultSettings(object):
     USERNAME = 'world'
@@ -31,8 +31,8 @@ def index():
 def add_todo():
     if 'todo_item' in request.form:
         todo = TodoItem(description=request.form['todo_item'])
-        db.session.add(todob)
+        db.session.add(todo)
         db.session.commit()
-        return "Got it!"
+        return redirect(url_for('index'))
     return "Unknown Error"
 

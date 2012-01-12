@@ -330,6 +330,23 @@ to see the repr version of this object. To show only the todo item, update hello
     {% endfor %}
   <ul>
 
+Redirect
+--------
+Last but not least, let's add a redirect so that when the user submits a form, they go back 
+to the front page. In __init__.py::
+
+  from flask import redirect, url_for
+  ...
+   db.session.add(todo)
+   db.session.commit()
+   return redirect(url_for('index'))
+
+Note that the redirect here is saying to redirect the the url that the index function services!!!
+
+Homework
+--------
+Follow the rest of the tutorial at http://flask.pocoo.org/docs/quickstart to support multiple
+users.
      
 More Info
 ---------
