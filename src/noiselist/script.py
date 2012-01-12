@@ -48,7 +48,6 @@ def make_shell():
     reqctx = app.test_request_context
     return locals()
 
-
 def _init_db(debug=False, dry_run=False):
     """Initialize the database."""
     from noiselist import init_db
@@ -127,3 +126,4 @@ def run():
         """Stop the application."""
         _serve('stop', dry_run=dry_run)
     werkzeug.script.run()
+

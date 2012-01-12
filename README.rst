@@ -189,11 +189,78 @@ of "pass". The = is not required to display a variable either.
 
 The Database
 ------------
+INTRO HERE
+
+Add the package for SQLAlchemy integration in setup.py of our package and rerun buildout.
+In flask-noiselist/setup.py::
+
+   install_requires=[
+        'setuptools',
+        'Flask',
+        'Flask-SQLAlchemy',
+    ],
+
+Re-run buildout to pull in the new package::
+
+  > ./bin/buildout
+  > bin/flask-ctl debug fg
+
+Now that we have the new egg, we can import and use all the db connections. In 
+SQLAlchemy, we need to define and initialize the model. Let's make a new file 
+called model.py and keep all of our access info there::
+
+  > touch flask-noiselist/src/noilist/model.py
+
+In this model, we will create the same todo item that we did in the web2py app with 
+a bit of a different twist. Edit model.py to say::
+
+  > XXX put stuff here
 
 
+Next we need to initialize the database. Initializeing the database will sync the model 
+we created with the database, making sure that all the columns and tables we need are 
+there and ready to use*. In __init__.py::
+
+  from model import db
+
+  ...
+
+  def init_db():
+    """ Initialize the database """
+    db.create_all()
+
+
+Unlike web2py, we must initialize the database manually every time we update the model. 
+There are several reasons and potential conflicts with this but SQLAlchemy does its
+best to make it all magically work. To resync the db, stop the server and run::
+
+  > ./bin/flask-ctl debug initdb
+  # restart
+  > ./bin/flask-ctl debug fg
+
+
+Hang in there, we are almost there. Next let's pull our data from the database. In 
+__init__.py::
+
+  from model import TodoItem
+  ...
+
+  @app.route('/')
+  def index():
+    todo_list = TodoItem.query.all()
+    return render_template('hello.html', todos=todo_list)    
+
+Keep in mind that at this moment the db is empty so a reload should just show an 
+empty list.
+
+Adding Data to the Database
+---------------------------
+
+     
 More Info
 ---------
  * Flask Documentation: http://flask.pocoo.org/docs/
  * About Jinja2: http://jinja.pocoo.org/docs/
  * Bootstrap: http://twitter.github.com/bootstrap/
+ * SQLAlchemy: XXX
  * For more info on this buildout itself, please see http://flask.pocoo.org/snippets/27/

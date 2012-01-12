@@ -28,6 +28,7 @@ setup(
     install_requires=[
         'setuptools',
         'Flask',
+        'Flask-SQLAlchemy',
     ],
     entry_points="""
     [console_scripts]

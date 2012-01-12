@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request
 from flask import render_template
+from model import TodoItem
+from model import db
 
 
 class _DefaultSettings(object):
@@ -16,15 +18,11 @@ del _DefaultSettings
 
 
 def init_db():
-    """Create the database tables."""
-    pass
-
+    """ Initialize the database """
+    db.create_all()
 
 @app.route('/')
 def index():
-    todo_list = ["Watch TV",
-             "Contemplate Work",
-             "Go to Bed",
-            ]
+    todo_list = TodoItem.query.all()
     return render_template('hello.html', todos=todo_list)
     
