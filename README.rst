@@ -184,7 +184,7 @@ Then in hello.html we update the list to pull from the todos passed in::
       {% for todo in todos %}
          <li>{{ todo }}</li>
       {% endfor %}
-    <ul>
+    </ul>
 
 Note the difference in syntax here with web2py. To end a loop we use "endfor" instead
 of "pass". The = is not required to display a variable either.
