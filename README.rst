@@ -161,7 +161,7 @@ This is just a basic logo that let's us know that we are serving up the correct 
 Let's update our front page to use bootstraps styles. For brevity I will just point to 
 the raw source since its a lot. Update hello.html with the code at::
 
-  https://raw.github.com/eleddy/flask-noiselist/d1137326c11cb908ddc6d59598913e439d5b1f83/src/noiselist/templates/hello.html
+  https://raw.github.com/noisebridge/flask-noiselist/d1137326c11cb908ddc6d59598913e439d5b1f83/src/noiselist/templates/hello.html
 
 Reload and party.
 
