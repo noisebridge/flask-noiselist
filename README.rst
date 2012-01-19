@@ -15,8 +15,7 @@ class, the cloned noiselist is the full solution so you can view the commit log 
 how the app was built step by step. To get the first step::
 
  > git clone git://github.com/noisebridge/flask-noiselist.git
- > cd flask-noiselist
- > git checkout -b ba4ebf111f
+ > git checkout ba4ebf111f
  > cd flask-noiselist
  > python bootstrap.py
  > ./bin/buildout
