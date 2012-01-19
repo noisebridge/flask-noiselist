@@ -4,6 +4,9 @@ Introduction
 This is the second installment of our tour of web frameworks. This will 
 be a simple TODO list.
 
+Again, this tutorial is probably not suited to Windows users. Please pair
+with a friend if you are working in a windows environment. Sorry!
+
 
 Up and Running
 --------------
@@ -11,7 +14,7 @@ Just like in the last class, you want to run bootstrap and buildout. Unlike the 
 class, the cloned noiselist is the full solution so you can view the commit log to see 
 how the app was built step by step. To get the first step::
 
- > git clone git://github.com/eleddy/flask-noiselist.git
+ > git clone git://github.com/noisebridge/flask-noiselist.git
  > cd flask-noiselist
  > git checkout -b ba4ebf111f
  > cd flask-noiselist
