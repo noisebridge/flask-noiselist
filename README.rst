@@ -14,7 +14,7 @@ Just like in the last class, you want to run bootstrap and buildout. Unlike the 
 class, the cloned noiselist is the full solution so you can view the commit log to see 
 how the app was built step by step. To get the first step::
 
- > git clone git://github.com/noisebridge/flask-noiselist.git
+ > git clone git://github.com/noisebridge/flask-noiselist
  > cd flask-noiselist
  > git checkout ba4ebf111f
  > python bootstrap.py
@@ -22,7 +22,7 @@ how the app was built step by step. To get the first step::
 
 To get the server running in foreground mode, do::
 
- > bin/flask-ctl debug fg
+ > ./bin/flask-ctl debug fg
 
 Your app will be running at http://127.0.0.1:5000 with a simple hello world 
 placeholder.
@@ -123,8 +123,8 @@ css, and othe image files.
 Let's start by hooking up some styles. Since it's all the craze with kids these days, we will 
 use twitters Bootstrap library.
 
-First let's add the default styles to the top of hello.html. The first link is hosted by twitter
-and the second link will be hosted by us::
+First let's add the default styles to the top of hello.html. The first link is
+hosted by twitter and the second link will be hosted by us::
 
   <head>
     <title>TODO at Noisebridge</title>
@@ -205,7 +205,8 @@ In flask-noiselist/setup.py::
         'Flask-SQLAlchemy',
     ],
 
-Re-run buildout to pull in the new package::
+Re-run buildout to pull in the new package (assuming you are in flask-noiselist
+directory)::
 
   > ./bin/buildout
   > bin/flask-ctl debug fg
@@ -214,7 +215,7 @@ Now that we have the new egg, we can import and use all the db connections. In
 SQLAlchemy, we need to define and initialize the model. Let's make a new file 
 called model.py and keep all of our access info there::
 
-  > touch flask-noiselist/src/noilist/model.py
+  > touch flask-noiselist/src/noiselist/model.py
 
 In this model, we will create the same todo item that we did in the web2py app with 
 a bit of a different twist. Edit model.py to say::
@@ -241,7 +242,7 @@ a bit of a different twist. Edit model.py to say::
 
 Next we need to initialize the database. Initializing the database will sync the model
 we created with the database, making sure that all the columns and tables we need are 
-there and ready to use*. In __init__.py::
+there and ready to use*. In flask-noiselist/src/noiselist/__init__.py::
 
   from model import db
 
@@ -261,8 +262,8 @@ best to make it all magically work. To resync the db, stop the server and run::
   > ./bin/flask-ctl debug fg
 
 
-Hang in there, we are almost there. Next let's pull our data from the database. In 
-__init__.py::
+Hang in there, we are almost there. Next let's pull our data from the database. 
+From now on flask-noiselist/src/noiselist directory is assumed. In __init__.py::
 
   from model import TodoItem
   ...
@@ -327,7 +328,7 @@ Note that unlike web2py, there is no validation out of the box. This could be a 
 or a bad things depending on your style and your project. 
 
 At this point you can go to the front page, add an item, then go back to to the front page 
-to see the repr version of this object. To show only the todo item, update hello.html::
+to see the repr version of this object. To show only the todo item, update templates/hello.html::
   
   <ul>
     {% for todo in todos %}
