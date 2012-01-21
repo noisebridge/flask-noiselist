@@ -194,6 +194,7 @@ of "pass". The = is not required to display a variable either.
 
 The Database
 ------------
+
 INTRO HERE
 
 Add the package for SQLAlchemy integration in setup.py of our package and rerun buildout.
@@ -209,13 +210,13 @@ Re-run buildout to pull in the new package (assuming you are in flask-noiselist
 directory)::
 
   > ./bin/buildout
-  > bin/flask-ctl debug fg
+  > ./bin/flask-ctl debug fg
 
 Now that we have the new egg, we can import and use all the db connections. In 
 SQLAlchemy, we need to define and initialize the model. Let's make a new file 
 called model.py and keep all of our access info there::
 
-  > touch flask-noiselist/src/noiselist/model.py
+  > touch src/noiselist/model.py
 
 In this model, we will create the same todo item that we did in the web2py app with 
 a bit of a different twist. Edit model.py to say::
@@ -242,7 +243,7 @@ a bit of a different twist. Edit model.py to say::
 
 Next we need to initialize the database. Initializing the database will sync the model
 we created with the database, making sure that all the columns and tables we need are 
-there and ready to use*. In flask-noiselist/src/noiselist/__init__.py::
+there and ready to use*. In src/noiselist/__init__.py::
 
   from model import db
 
@@ -263,7 +264,7 @@ best to make it all magically work. To resync the db, stop the server and run::
 
 
 Hang in there, we are almost there. Next let's pull our data from the database. 
-From now on flask-noiselist/src/noiselist directory is assumed. In __init__.py::
+From now on, flask-noiselist/src/noiselist directory is assumed. In __init__.py::
 
   from model import TodoItem
   ...
