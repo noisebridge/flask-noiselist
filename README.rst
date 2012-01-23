@@ -14,15 +14,15 @@ Just like in the last class, you want to run bootstrap and buildout. Unlike the 
 class, the cloned noiselist is the full solution so you can view the commit log to see 
 how the app was built step by step. To get the first step::
 
- > git clone git://github.com/noisebridge/flask-noiselist.git
- > git checkout ba4ebf111f
+ > git clone git://github.com/noisebridge/flask-noiselist
  > cd flask-noiselist
+ > git checkout ba4ebf111f
  > python bootstrap.py
  > ./bin/buildout
 
 To get the server running in foreground mode, do::
 
- > bin/flask-ctl debug fg
+ > ./bin/flask-ctl debug fg
 
 Your app will be running at http://127.0.0.1:5000 with a simple hello world 
 placeholder.
@@ -30,9 +30,12 @@ placeholder.
 Take a minute to notice the differences between this app and web2py. There is 
 no admin console and no formatting by default. Flask is really a micro framwork. 
 
-Notice as well that starting we are in foreground mode, and that you don't 
-have to kill a process or terminal to restart. Simply Ctl-C to restart. This 
-also means that any pdbing will take you directly to this console.
+Notice as well that we are starting in foreground mode, and that you don't
+have to kill a process or terminal to restart. Foreground mode will autodetect
+changes and reload new code automatically. In doubt, simply Ctrl-C and restart
+the server with './bin/flask-ctl debug fg'. This also means that any pdbing
+will take you directly to this console.
+
 
 Modifying These Instructions
 ----------------------------
@@ -76,7 +79,7 @@ First we need to create a directory for holding our templates::
 
 And lets take our Hello page and make it into a template by adding a template::
 
- > touch hello.html
+ > touch templates/hello.html
 
 In that file, let's add a few lines to show how our list will look in the end::
  
@@ -91,7 +94,7 @@ In that file, let's add a few lines to show how our list will look in the end::
         <li>Finish evaluating pull requests</li>
         <li>Finish writing up class work</li>
         <li>Swim and enjoy the sun</li>
-      <ul>
+      </ul>
       <form action="" method="POST" id="add_to_todo_list">
         <input type="text" name="todo_item"/>
         <input type="submit" name="add_todo_submit" value="Add to List!"/>
@@ -99,10 +102,10 @@ In that file, let's add a few lines to show how our list will look in the end::
     </body>
   </html>
 
-And then in __init__.py, we will connect the index page with that tempalte by
-adding a decorator::
+And then in __init__.py, we will connect the index page with that template
+doing the following modifications::
 
-  from flask import render_template
+  from flask import Flask, request, render_template
 
   ...
   
@@ -120,8 +123,8 @@ css, and othe image files.
 Let's start by hooking up some styles. Since it's all the craze with kids these days, we will 
 use twitters Bootstrap library.
 
-First let's add the default styles to the top of hello.html. The firs link is hostted by twitter 
-and the second link will be hosted by us::
+First let's add the default styles to the top of hello.html. The first link is
+hosted by twitter and the second link will be hosted by us::
 
   <head>
     <title>TODO at Noisebridge</title>
@@ -191,6 +194,7 @@ of "pass". The = is not required to display a variable either.
 
 The Database
 ------------
+
 INTRO HERE
 
 Add the package for SQLAlchemy integration in setup.py of our package and rerun buildout.
@@ -202,16 +206,17 @@ In flask-noiselist/setup.py::
         'Flask-SQLAlchemy',
     ],
 
-Re-run buildout to pull in the new package::
+Re-run buildout to pull in the new package (assuming you are in flask-noiselist
+directory)::
 
   > ./bin/buildout
-  > bin/flask-ctl debug fg
+  > ./bin/flask-ctl debug fg
 
 Now that we have the new egg, we can import and use all the db connections. In 
 SQLAlchemy, we need to define and initialize the model. Let's make a new file 
 called model.py and keep all of our access info there::
 
-  > touch flask-noiselist/src/noilist/model.py
+  > touch src/noiselist/model.py
 
 In this model, we will create the same todo item that we did in the web2py app with 
 a bit of a different twist. Edit model.py to say::
@@ -236,9 +241,9 @@ a bit of a different twist. Edit model.py to say::
     def __repr__(self):
         return '<TODO %r>' % self.description
 
-Next we need to initialize the database. Initializeing the database will sync the model 
+Next we need to initialize the database. Initializing the database will sync the model
 we created with the database, making sure that all the columns and tables we need are 
-there and ready to use*. In __init__.py::
+there and ready to use*. In src/noiselist/__init__.py::
 
   from model import db
 
@@ -258,8 +263,8 @@ best to make it all magically work. To resync the db, stop the server and run::
   > ./bin/flask-ctl debug fg
 
 
-Hang in there, we are almost there. Next let's pull our data from the database. In 
-__init__.py::
+Hang in there, we are almost there. Next let's pull our data from the database. 
+From now on, flask-noiselist/src/noiselist directory is assumed. In __init__.py::
 
   from model import TodoItem
   ...
@@ -275,7 +280,7 @@ empty list.
 Submitting Data
 ---------------
 Because this is our second time adding data to a database, let's also introduce the
-concept of routing. Let's have our from page form submit to a url that is not the 
+concept of routing. Let's have our front page form submit to a url that is not the
 index page, process the data, and then redirect. First things first, let's add a
 new route that the form can submit to. This is just a matter of creating a function 
 and testing that it goes to the right place. In __init__.py::
@@ -315,7 +320,7 @@ commit is REQUIRED!::
   def add_todo():
     if 'todo_item' in request.form:
         todo = TodoItem(description=request.form['todo_item'])
-        db.session.add(todob)
+        db.session.add(todo)
         db.session.commit()
         return "Got it!"
     return "Unknown Error"  
@@ -324,7 +329,7 @@ Note that unlike web2py, there is no validation out of the box. This could be a 
 or a bad things depending on your style and your project. 
 
 At this point you can go to the front page, add an item, then go back to to the front page 
-to see the repr version of this object. To show only the todo item, update hello.html::
+to see the repr version of this object. To show only the todo item, update templates/hello.html::
   
   <ul>
     {% for todo in todos %}
