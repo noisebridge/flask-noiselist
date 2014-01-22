@@ -85,6 +85,7 @@ is well supported).
 
 First we need to create a directory for holding our templates::
 
+ > cd src/noiselist
  > mkdir templates
 
 And lets take our Hello page and make it into a template by adding a template::
@@ -115,7 +116,9 @@ In that file, let's add a few lines to show how our list will look in the end::
 And then in __init__.py, we will connect the index page with that template
 doing the following modifications::
 
-  from flask import Flask, request, render_template
+  from flask import Flask
+  from flask import request
+  from flask import render_template
 
   ...
   
@@ -138,7 +141,7 @@ hosted by twitter and the second link will be hosted by us::
 
   <head>
     <title>TODO at Noisebridge</title>
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/css/noiselist.css"/>
   </head>
 
@@ -171,7 +174,7 @@ Now let's add some styles to static/css/noiselist.css::
 This is just a basic logo that let's us know that we are serving up the correct content.
 
 Let's update our front page to use bootstraps styles. For brevity I will just point to 
-the raw source since its a lot. Update hello.html with the code at::
+the raw source since its a lot. Update hello.html with the <body/> code at::
 
   https://raw.github.com/noisebridge/flask-noiselist/d1137326c11cb908ddc6d59598913e439d5b1f83/src/noiselist/templates/hello.html
 
@@ -204,8 +207,6 @@ of "pass". The = is not required to display a variable either.
 
 The Database
 ------------
-
-INTRO HERE
 
 Add the package for SQLAlchemy integration in setup.py of our package and rerun buildout.
 In flask-noiselist/setup.py::
@@ -245,8 +246,7 @@ a bit of a different twist. Edit model.py to say::
     description = db.Column(db.String(240), unique=True)
 
     def __init__(self, description):
-        self.description = description
-        
+        self.description = description        
 
     def __repr__(self):
         return '<TODO %r>' % self.description
