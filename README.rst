@@ -14,15 +14,16 @@ Just like in the last class, you want to run bootstrap and buildout. Unlike the 
 class, the cloned noiselist is the full solution so you can view the commit log to see 
 how the app was built step by step. To get the first step::
 
- > git clone git://github.com/noisebridge/flask-noiselist
+ > git clone ttps://github.com/noisebridge/flask-noiselist.git
  > cd flask-noiselist
+ > virtualenv .
  > git checkout ba4ebf111f
- > python bootstrap.py
+ > ./bin/python bootstrap.py
  > ./bin/buildout
 
 To get the server running in foreground mode, do::
 
- > ./bin/flask-ctl debug fg
+ > ./bin/flask-ctl debug fg 
 
 Your app will be running at http://127.0.0.1:5000 with a simple hello world 
 placeholder.
@@ -35,6 +36,11 @@ have to kill a process or terminal to restart. Foreground mode will autodetect
 changes and reload new code automatically. In doubt, simply Ctrl-C and restart
 the server with './bin/flask-ctl debug fg'. This also means that any pdbing
 will take you directly to this console.
+
+Technical Note: Please be aware that the extra virtualenv step is likely not 
+required if your system has always used buildout or virtual envs. I leave it
+here for anyone who has already mucked up their global packages. It's good 
+practice anyways :)
 
 
 Modifying These Instructions
