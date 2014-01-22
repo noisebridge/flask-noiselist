@@ -1,4 +1,9 @@
 *~
+*.pyc
+.Python
+eggs
+include
+lib
 buildout-cache
 develop-eggs
 var
